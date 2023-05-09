@@ -1,0 +1,72 @@
+{
+    "글쓰기와발표": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231LA029917&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231LA029917&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "LA029917"
+    },
+    "대학수학1": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231BA000229&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231BA000229&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "BA000229"
+    },
+    "리더십과커뮤니케이션": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231LA026409&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231LA026409&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "LA026409"
+    },
+    "일반물리학1": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231BA000327&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231BA000327&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "BA000327"
+    },
+    "일반물리학실험1": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231BA000427&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231BA000427&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "BA000427"
+    },
+    "창의공학설계입문": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS000701&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS000701&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "CS000701"
+    },
+    "취업진로상담": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231FP000201&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231FP000201&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "FP000201"
+    },
+    "컴퓨터개론": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS006102&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS006102&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "CS006102"
+    },
+    "프로그래밍입문": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS006002&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS006002&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "CS006002"
+    },
+    "학습과진로": {
+        "url": {
+            "c": "https://elearning.kumoh.ac.kr/Course.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS006201&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063",
+            "r": "https://elearning.kumoh.ac.kr/Report.do?cmd=viewReportInfoPageList&courseDTO.courseId=20231CS006201&boardInfoDTO.boardInfoGubun=report&mainDTO.parentMenuId=menu_00104mainDTO.menuId=menu_00063"
+        },
+        "code": "CS006201"
+    }
+}
