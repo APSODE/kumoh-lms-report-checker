@@ -27,6 +27,8 @@ class LMSController:
             "\t", ""
         ).replace(
             "\r", ""
+        ).replace(
+            "\xa0", " "
         )
 
     @staticmethod
