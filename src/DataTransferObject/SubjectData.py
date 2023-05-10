@@ -1,5 +1,4 @@
 from typing import Dict, Union
-
 from src.DataTransferObject.BaseDataTransferObject import BaseDataTransferObject
 
 
