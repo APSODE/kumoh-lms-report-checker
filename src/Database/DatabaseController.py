@@ -1,4 +1,4 @@
-from typing import Type, Any, Union
+from typing import Type, Union, List, TypeVar
 from src.Database.DatabaseCreator import DatabaseCreator
 from src.Database.Model.ReportModel import ReportModel
 from src.Database.Model.SubjectModel import SubjectModel
@@ -13,7 +13,7 @@ class DatabaseController:
     def DB_Creator(self):
         return self._database_creator
 
-    def AddData(self, model_object: Type[DatabaseCreator.Model]):
+    def AddData(self, model_object: Union[SubjectModel, ReportModel]):
         self._database_creator.Session.add(model_object)
 
     def CommitData(self):
