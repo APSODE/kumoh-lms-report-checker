@@ -8,6 +8,7 @@
 **사용 라이브러리&프레임워크**
 - Requests : LMS서버에 요청을 보내기 해서 사용<br>
 - Beautifulsoup4 : LMS서버에서 받은 응답에서 HTML요소를 분석하기 위해 사용
+- SQLAlchemy : 강의 및 과제 데이터 관리를 위해 사용
 <br>
 <br>
 
