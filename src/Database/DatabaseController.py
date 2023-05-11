@@ -40,3 +40,15 @@ class DatabaseController:
             update_data
         )
 
+    def is_already_exist(self, model_class: Union[Type[SubjectModel], Type[ReportModel]], filter_data: bool) -> bool:
+        filtered_data = self._database_creator.Session.query(
+            model_class
+        ).filter(
+            filter_data
+        ).first()
+
+        if filtered_data:
+            return True
+
+        else:
+            return False
