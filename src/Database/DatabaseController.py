@@ -2,7 +2,8 @@ from typing import Type, Union, List, TypeVar
 from src.Database.DatabaseCreator import DatabaseCreator
 from src.Database.Model.ReportModel import ReportModel
 from src.Database.Model.SubjectModel import SubjectModel
-from sqlalchemy import ClauseElement
+
+DataModel = TypeVar("DataModel")
 
 
 class DatabaseController:
@@ -19,7 +20,18 @@ class DatabaseController:
     def CommitData(self):
         self._database_creator.Session.commit()
 
-    def UpdateData(self, model_class: Type[DatabaseCreator.Model], filter_data: bool, update_data: dict):
+    def GetData(self, model_class: Type[DataModel], data_amount: int = 0) -> List[DataModel]:
+        filtered_data = self._database_creator.Session.query(
+           model_class
+        )
+
+        if data_amount == 0:
+            return filtered_data.all()
+
+        else:
+            return filtered_data.limit(data_amount).all()
+
+    def UpdateData(self, model_class: Union[SubjectModel, ReportModel], filter_data: bool, update_data: dict):
         self._database_creator.Session.query(
             model_class
         ).filter(
