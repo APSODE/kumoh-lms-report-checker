@@ -8,6 +8,10 @@ from src.CustomException.LMSControllerException import LoginFailException, MainP
 from src.DataTransferObject.UserAccountData import UserAccountData
 from src.DataTransferObject.ReportData import ReportData
 from src.DataTransferObject.SubjectData import SubjectData
+from src.Database.DatabaseCreator import DatabaseCreator
+from src.Database.DatabaseController import DatabaseController
+from src.Database.Model.ReportModel import ReportModel
+from src.Database.Model.SubjectModel import SubjectModel
 
 
 class LMSController:
@@ -196,5 +200,68 @@ class LMSController:
 
         return report_data_list
 
-    # def UpdateReportDatas(self):
+    def _subject_data_update_check(self) -> bool:
+        db_controller = DatabaseController(
+            db_creator = DatabaseCreator(
+                db_name = "lms_data"
+            )
+        )
+
+        current_lms_page_subject_list = self.GetSubjectDatas()
+        current_db_subject_data_list = db_controller.GetData(model_class = SubjectModel)
+
+        if len(current_db_subject_data_list) != len(current_lms_page_subject_list):
+            return False
+
+        else:
+            return True
+
+    def UpdateReportDatas(self, target_subject_data_object: SubjectData):
+        db_controller = DatabaseController(
+            db_creator = DatabaseCreator(
+                db_name = "lms_data"
+            )
+        )
+
+        for report_data in self.GetReportDatas(subject_data = target_subject_data_object):
+            is_already_exist_data = db_controller.is_already_exist(
+                model_class = ReportModel,
+                filter_data = ReportModel.title == report_data.ReportTitle
+            )
+
+            if not is_already_exist_data:
+                db_controller.AddData(
+                    model_object = ReportModel(
+                        report_data_object = report_data
+                    )
+                )
+
+        db_controller.CommitData()
+
+    def UpdateSubjectDatas(self):
+        db_controller = DatabaseController(
+            db_creator = DatabaseCreator(
+                db_name = "lms_data"
+            )
+        )
+
+        for lms_subject_data in self.GetSubjectDatas():
+            is_already_exist_data = db_controller.is_already_exist(
+                model_class = SubjectModel,
+                filter_data = SubjectModel.subject_name == lms_subject_data.SubjectName
+            )
+
+            if not is_already_exist_data:
+                db_controller.AddData(
+                    model_object = SubjectModel(
+                        subject_data_object = lms_subject_data
+                    )
+                )
+
+        db_controller.CommitData()
+
+
+
+
+
 
