@@ -28,8 +28,12 @@ class DatabaseCreator:
         )
 
     @property
-    def Session(self):
+    def Session(self) -> scoped_session:
         return self._session
+
+    @property
+    def Engine(self) -> Engine:
+        return self._engine
 
     def init_db(self):
         self.Model.metadata.create_all(bind = self._engine)
