@@ -216,25 +216,39 @@ class LMSController:
         else:
             return True
 
-    def UpdateReportDatas(self, target_subject_data_object: SubjectData):
+    def UpdateReportDatas(self):
         db_controller = DatabaseController(
             db_creator = DatabaseCreator(
                 db_name = "lms_data"
             )
         )
 
-        for report_data in self.GetReportDatas(subject_data = target_subject_data_object):
-            is_already_exist_data = db_controller.is_already_exist(
-                model_class = ReportModel,
-                filter_data = ReportModel.title == report_data.ReportTitle
-            )
+        subject_model_list = db_controller.GetData(
+            model_class = SubjectModel,
+            data_amount = 10
+        )
+        subject_object_list = [subject_data_model.GetSubjectDataObject() for subject_data_model in subject_model_list]
+        for subject_data_object in subject_object_list:
+            this_subject_id = db_controller.GetData(
+                model_class = SubjectModel,
+                filter_data = SubjectModel.subject_name == subject_data_object.SubjectName,
+                data_amount = 1
+            )[0].id
 
-            if not is_already_exist_data:
-                db_controller.AddData(
-                    model_object = ReportModel(
-                        report_data_object = report_data
-                    )
+            for report_data in self.GetReportDatas(subject_data = subject_data_object):
+                # TODO 제목만 다를 경우 데이터를 추가하는 것이 아닌 변경된 제목을 가진 데이터로 이전 데이터를 덮어씌우도록 해야함
+                is_already_exist_data = db_controller.is_already_exist(
+                    model_class = ReportModel,
+                    filter_data = ReportModel.title == report_data.ReportTitle
                 )
+
+                if not is_already_exist_data:
+                    db_controller.AddData(
+                        model_object = ReportModel(
+                            report_data_object = report_data,
+                            subject_id = this_subject_id
+                        )
+                    )
 
         db_controller.CommitData()
 
