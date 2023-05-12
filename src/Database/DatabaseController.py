@@ -20,10 +20,21 @@ class DatabaseController:
     def CommitData(self):
         self._database_creator.Session.commit()
 
-    def GetData(self, model_class: Type[DataModel], data_amount: int = 0) -> List[DataModel]:
+    def GetData(self,
+                model_class: Type[DataModel],
+                filter_data: Optional[bool] = None,
+                data_amount: int = 0) -> List[DataModel]:
+
         filtered_data = self._database_creator.Session.query(
-           model_class
+            model_class
         )
+
+        if filter_data is not None:
+            filtered_data = filtered_data.filter(
+                filter_data
+            )
+
+        filtered_data: Query
 
         if data_amount == 0:
             return filtered_data.all()
