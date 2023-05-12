@@ -51,6 +51,24 @@ class DatabaseController:
             update_data
         )
 
+    def DeleteData(self, model_class: Union[Type[SubjectModel], Type[ReportModel]], filter_data: bool, data_amount: int = 1):
+        filtered_data = self._database_creator.Session.query(
+            model_class
+        ).filter(
+            filter_data
+        )
+        filtered_data: Query
+
+        print(type(filtered_data))
+
+        if data_amount == 1:
+            selected_data = filtered_data.first()
+
+        else:
+            selected_data = filtered_data.limit(data_amount)
+
+        self._database_creator.Session.delete(selected_data)
+
     def is_already_exist(self, model_class: Union[Type[SubjectModel], Type[ReportModel]], filter_data: bool) -> bool:
         filtered_data = self._database_creator.Session.query(
             model_class
