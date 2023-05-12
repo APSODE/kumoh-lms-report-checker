@@ -31,7 +31,7 @@ class DatabaseController:
         else:
             return filtered_data.limit(data_amount).all()
 
-    def UpdateData(self, model_class: Union[SubjectModel, ReportModel], filter_data: bool, update_data: dict):
+    def UpdateData(self, model_class: Union[Type[SubjectModel], Type[ReportModel]], filter_data: bool, update_data: dict):
         self._database_creator.Session.query(
             model_class
         ).filter(
