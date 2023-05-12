@@ -60,8 +60,6 @@ class DatabaseController:
         )
         filtered_data: Query
 
-        print(type(filtered_data))
-
         if data_amount == 1:
             selected_data = filtered_data.first()
 
