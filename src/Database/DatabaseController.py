@@ -1,7 +1,8 @@
-from typing import Type, Union, List, TypeVar
+from typing import Type, Union, List, TypeVar, Optional
 from src.Database.DatabaseCreator import DatabaseCreator
 from src.Database.Model.ReportModel import ReportModel
 from src.Database.Model.SubjectModel import SubjectModel
+from sqlalchemy.orm.query import Query
 
 DataModel = TypeVar("DataModel")
 
@@ -75,6 +76,7 @@ class DatabaseController:
         ).filter(
             filter_data
         ).first()
+        filtered_data: Query
 
         if filtered_data:
             return True
