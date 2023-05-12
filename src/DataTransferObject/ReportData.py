@@ -43,8 +43,8 @@ class ReportData(BaseDataTransferObject):
 
         return ReportData(
             deadline = submission_deadline,
-            allow_extend = True if allow_extended_submission == "허용" else False,
-            status = True if submission_status == "제출" else False,
+            allow_extend = True if allow_extended_submission[0:3] == "허 용" else False,
+            status = True if submission_status == "제출완료" else False,
             title = report_title,
             description = report_description
         )
