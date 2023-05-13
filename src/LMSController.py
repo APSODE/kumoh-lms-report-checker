@@ -1,8 +1,7 @@
-import json
-from typing import Optional, List
+from typing import Optional, List, Union
 from requests import Session, Response
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import Tag, PageElement
 from datetime import datetime as dt
 from src.CustomException.LMSControllerException import LoginFailException, MainPageLoadError
 from src.DataTransferObject.UserAccountData import UserAccountData
@@ -12,6 +11,7 @@ from src.Database.DatabaseCreator import DatabaseCreator
 from src.Database.DatabaseController import DatabaseController
 from src.Database.Model.ReportModel import ReportModel
 from src.Database.Model.SubjectModel import SubjectModel
+from sqlalchemy import and_
 
 
 class LMSController:
@@ -24,7 +24,7 @@ class LMSController:
         self._login_lms()
 
     @staticmethod
-    def _replace_element_text(element: Tag) -> str:
+    def _replace_element_text(element: Union[Tag, PageElement]) -> str:
         return element.text.replace(
             "\n", ""
         ).replace(
@@ -242,6 +242,19 @@ class LMSController:
                     filter_data = ReportModel.title == report_data.ReportTitle
                 )
 
+                # same_data_check_filter = and_(
+                #     ReportModel.title != report_data.ReportTitle,
+                #     ReportModel.description == report_data.ReportDescription,
+                #     ReportModel.deadline == report_data.SubmissionDeadline,
+                #     ReportModel.submission_status == report_data.SubmissionStatus,
+                #     ReportModel.allow_ext_submission == report_data.AllowExtendedSubmission
+                # )
+                #
+                # found_data = db_controller.GetData(
+                #     model_class = ReportModel,
+                #     filter_data = same_data_check_filter
+                # )
+
                 if not is_already_exist_data:
                     db_controller.AddData(
                         model_object = ReportModel(
@@ -249,6 +262,11 @@ class LMSController:
                             subject_id = this_subject_id
                         )
                     )
+
+                    # db_controller.DeleteData(
+                    #     model_class = ReportModel,
+                    #     filter_data = same_data_check_filter
+                    # )
 
         db_controller.CommitData()
 
@@ -273,9 +291,3 @@ class LMSController:
                 )
 
         db_controller.CommitData()
-
-
-
-
-
-
