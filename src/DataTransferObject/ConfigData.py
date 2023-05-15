@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Union, Any
+from typing import Optional, Dict, Union, Any, List
 from src.Bot.utils.JsonReadWrite import JsonReadWrite
 from src.DataTransferObject.BaseDataTransferObject import BaseDataTransferObject
 from src.CustomException.DTOException import *
@@ -11,19 +11,20 @@ class ConfigData(BaseDataTransferObject):
         time_data_temp = self._config_file_data.get("time_data")
         update_check_term_temp = self._config_file_data.get("update_check_term")
 
-        self._notice_time_data = time_data_temp if time_data_temp is not None else {"hour": 0, "minute": 0}
+        self._notice_time_datas = time_data_temp if time_data_temp is not None else [{"hour": 0, "minute": 0}]
         self._update_check_term = update_check_term_temp if update_check_term_temp is not None else 10
 
     @property
-    def NoticeTime(self) -> Dict[str, int]:
-        return self._notice_time_data
+    def NoticeTime(self) -> List[Dict[str, int]]:
+        return self._notice_time_datas
 
     @NoticeTime.setter
-    def NoticeTime(self, new_time_data: Dict[str, int]):
-        if new_time_data.get("hour") is None or new_time_data.get("minute") is None:
-            raise ConfigDataSetterNotExistError()
+    def NoticeTime(self, new_time_datas: List[Dict[str, int]]):
+        for new_time_data in new_time_datas:
+            if new_time_data.get("hour") is None or new_time_data.get("minute") is None:
+                raise ConfigDataSetterNotExistError()
 
-        self._notice_time_data = new_time_data
+        self._notice_time_datas = new_time_datas
 
     @property
     def UpdateCheckTerm(self) -> int:
