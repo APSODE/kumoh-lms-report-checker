@@ -9,10 +9,7 @@ from src.Bot.cogs.BaseCommand import BaseCommand
 
 class NoticeCommand(BaseCommand):
     def __init__(self):
-        self._file_name = os.path.basename(__file__)
-        super().__init__(
-            file_name = self._file_name
-        )
+        self._file_name = "NoticeCommand"
 
     @commands.command(name = "SNT")
     async def SetNoticeTime(self, ctx: Context, *args):
@@ -44,6 +41,11 @@ class NoticeCommand(BaseCommand):
     @property
     def FileName(self) -> str:
         return self._file_name
+
+
+async def setup(bot: commands.Bot):
+    await bot.add_cog(NoticeCommand())
+
 
 
 
