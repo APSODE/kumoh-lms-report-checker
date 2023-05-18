@@ -5,17 +5,19 @@ from src.CustomException.DTOException import *
 
 
 class ConfigData(BaseDataTransferObject):
-    def __init__(self, file_dir: Optional[str] = None, config_data_dict: Optional[Dict[str, Any]] = None):
-        self._config_file_data = JsonReadWrite.ReadJson(file_dir) if config_data_dict is None else config_data_dict
-
-        time_data_temp = self._config_file_data.get("time_data")
-        update_check_term_temp = self._config_file_data.get("update_check_term")
-
-        self._notice_time_datas = time_data_temp if time_data_temp is not None else [{"hour": 0, "minute": 0}]
-        self._update_check_term = update_check_term_temp if update_check_term_temp is not None else 10
+    def __init__(self,
+                 notice_time_datas: List[Dict[str, int]],
+                 update_check_term: int,
+                 token: str,
+                 bot_id: int
+                 ):
+        self._notice_time_datas = notice_time_datas
+        self._update_check_term = update_check_term
+        self._token = token
+        self._bot_id = bot_id
 
     @property
-    def NoticeTime(self) -> List[Dict[str, int]]:
+    def NoticeTime(self) -> Optional[List[Dict[str, int]]]:
         return self._notice_time_datas
 
     @NoticeTime.setter
@@ -27,7 +29,7 @@ class ConfigData(BaseDataTransferObject):
         self._notice_time_datas = new_time_datas
 
     @property
-    def UpdateCheckTerm(self) -> int:
+    def UpdateCheckTerm(self) -> Optional[int]:
         return self._update_check_term
 
     @UpdateCheckTerm.setter
