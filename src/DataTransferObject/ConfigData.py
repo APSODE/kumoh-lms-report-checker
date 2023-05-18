@@ -37,6 +37,14 @@ class ConfigData(BaseDataTransferObject):
 
         self._update_check_term = new_check_term
 
+    @property
+    def Token(self) -> Optional[str]:
+        return self._token
+
+    @property
+    def ID(self) -> Optional[int]:
+        return self._bot_id
+
     def GetAllDataByDict(self) -> dict:
         return {key.replace("_", "", 1): value for key, value in self.__dict__.items()}
 
