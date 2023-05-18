@@ -1,12 +1,14 @@
+import os.path
+
 import discord
 from discord.ext import commands, tasks
 from discord import Intents
-from src.DataTransferObject.TokenIdData import TokenIdData
+from src.Bot.utils.TokenIdDataCreator import TokenIdDataCreator
 from src.Bot.cogs.CogHandler import CogHandler
 
 
 class NoticeBot(commands.Bot):
-    def __init__(self, token_data_object: TokenIdData):
+    def __init__(self):
         default_intents = Intents.default()
         default_intents.message_content = True
 
@@ -18,7 +20,7 @@ class NoticeBot(commands.Bot):
         self._cog_handler = CogHandler(
             bot_object = self
         )
-        self._token_id_data_object = token_data_object
+        self._token_id_data_object = TokenIdDataCreator.CreateTokenData()
         self._start()
 
     def _start(self):
