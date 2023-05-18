@@ -8,7 +8,7 @@ class CogHandler:
 
     async def setup_cogs(self):
         for cog_file in os.listdir(".\\src\\Bot\\cogs\\"):
-            if cog_file in ["CogHandler.py", "BaseCommand.py"]:
+            if cog_file in ["CogHandler.py", "BaseCommand.py", "__pycache__"]:
                 pass
             else:
                 try:
