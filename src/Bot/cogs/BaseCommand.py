@@ -5,9 +5,6 @@ from discord.ext.commands import Context
 
 
 class BaseCommand(commands.Cog):
-    def __init__(self, file_name: str):
-        self._file_name = file_name
-
     @staticmethod
     async def CommandArgumentDevider(arguments: Tuple[Any]) -> Dict[str, Any]:
         return {str(arg_num): arg_value for arg_num, arg_value in enumerate(arguments)}
@@ -19,4 +16,4 @@ class BaseCommand(commands.Cog):
     @property
     @abstractmethod
     def FileName(self) -> str:
-        return self._file_name
+        pass
