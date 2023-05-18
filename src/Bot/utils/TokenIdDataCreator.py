@@ -1,17 +1,15 @@
 from src.DataTransferObject.TokenIdData import TokenIdData
-from src.Bot.utils.JsonReadWrite import JsonReadWrite
+from src.Bot.func.ConfigFunc import ConfigFunc
 
 
 class TokenIdDataCreator:
     @staticmethod
-    def CreateTokenData(config_file_dir: str) -> TokenIdData:
-        read_config_data = JsonReadWrite.ReadJson(
-            json_file_dir = config_file_dir
-        )
+    def CreateTokenData() -> TokenIdData:
+        config_data_object = ConfigFunc.GetConfigDataObject()
 
         return TokenIdData.CreateObject(
-            token = read_config_data.get("token"),
-            id = read_config_data.get("id")
+            token = config_data_object.Token,
+            id = config_data_object.ID
         )
 
 
