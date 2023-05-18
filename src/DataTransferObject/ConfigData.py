@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Union, Any, List
+from typing import Optional, Dict, Any, List
 from src.Bot.utils.JsonReadWrite import JsonReadWrite
 from src.DataTransferObject.BaseDataTransferObject import BaseDataTransferObject
 from src.CustomException.DTOException import *
@@ -51,13 +51,46 @@ class ConfigData(BaseDataTransferObject):
         return {key.replace("_", "", 1): value for key, value in self.__dict__.items()}
 
     @staticmethod
-    def CreateObject(config_file_dir: str) -> "ConfigData":
+    def CreateObject(
+                     notice_time_datas: List[Dict[str, int]],
+                     update_check_term: int,
+                     token: str,
+                     bot_id: int
+                     ):
+
         return ConfigData(
-            file_dir = config_file_dir
+            notice_time_datas = notice_time_datas,
+            update_check_term = update_check_term,
+            token = token,
+            bot_id = bot_id
+        )
+
+    @staticmethod
+    def CreateObjectByDir(config_file_dir: str) -> "ConfigData":
+        read_config_file_data = JsonReadWrite.ReadJson(config_file_dir)
+
+        return ConfigData(
+            notice_time_datas = read_config_file_data.get("notice_time_datas"),
+            update_check_term = read_config_file_data.get("update_check_term"),
+            token = read_config_file_data.get("token"),
+            bot_id = read_config_file_data.get("bot_id")
         )
 
     @staticmethod
     def SerializeData(data_dict: Dict[str, Any]) -> "ConfigData":
         return ConfigData(
-            config_data_dict = data_dict
+            notice_time_datas = data_dict.get("notice_time_datas"),
+            update_check_term = data_dict.get("update_check_term"),
+            token = data_dict.get("token"),
+            bot_id = data_dict.get("bot_id")
         )
+
+    @staticmethod
+    def CreateBasicObject() -> "ConfigData":
+        return ConfigData(
+            notice_time_datas = [{"hour": 9, "minute": 0}],
+            update_check_term = 10,
+            token = "",
+            bot_id = 0
+        )
+
