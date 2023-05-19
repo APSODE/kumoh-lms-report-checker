@@ -15,5 +15,5 @@ class BaseCommand(commands.Cog):
 
     @property
     @abstractmethod
-    def FileName(self) -> str:
+    def FileName(self):
         pass
