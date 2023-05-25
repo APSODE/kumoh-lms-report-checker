@@ -1,3 +1,5 @@
+from typing import Optional
+
 import discord
 from discord.ext import commands, tasks
 from discord import Intents
@@ -6,7 +8,7 @@ from src.Bot.core.CogManager import CogManager
 
 
 class NoticeBot(commands.Bot):
-    def __init__(self):
+    def __init__(self, custom_config_manager: Optional[ConfigManager] = None):
         default_intents = Intents.default()
         default_intents.message_content = True
 
@@ -16,11 +18,21 @@ class NoticeBot(commands.Bot):
             sync_command = True
         )
 
+        if custom_config_manager is None:
+            self._config_manager = ConfigManager()
+
+        else:
+            self._config_manager = custom_config_manager
+
         self._cog_manager = CogManager(
             bot_object = self
         )
 
-        self._config_manager = ConfigManager()
+        self._start()
+
+    @property
+    def ConfigManager(self):
+        return self._config_manager
 
     def _start(self):
         self.run(
