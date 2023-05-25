@@ -10,6 +10,7 @@ class BaseCommand(commands.Cog):
         return {str(arg_num): arg_value for arg_num, arg_value in enumerate(arguments)}
 
     @abstractmethod
+    @commands.Cog.listener()
     async def cog_command_error(self, ctx: Context, error: Exception) -> None:
         pass
 
