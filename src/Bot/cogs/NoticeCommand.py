@@ -16,18 +16,18 @@ class NoticeCommand(BaseCommand):
 
     @commands.command(aliases = ["알림", "ㅇㄹ", "df", "dkffla"])
     async def Notice(self, ctx: Context, *args):
-        ica_task = asyncio.create_task(self.CommandArgumentDevider(args))
-        ica_result = ica_task.result()
+        ica_result = await asyncio.create_task(self.CommandArgumentDevider(args))
         ica_length = len(ica_result.keys())
 
-        if ica_length == 0:
-            notice_commands_embed = Embed(
-                title = "알림 명령어",
-                description = "알림 명령어 목록"
-            )
+        command_handler = NoticeCommandHandler(
+            ctx = ctx,
+            ica_result = ica_result,
+            ica_length = ica_length
+        )
 
     async def cog_command_error(self, ctx: Context, error: Exception) -> None:
-        pass
+        if isinstance(error, commands.CommandNotFound):
+            await ctx.send("해당 커멘드를 찾을수 없습니다.")
 
     @property
     def FileName(self):
